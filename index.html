@@ -2,59 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>HTML Starter</title>
+    <title>Draw On Canvas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./dist/css/main.css" type="text/css">
-    <style>
-      canvas{
-        border: 1px solid #000;
-      }
     
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" type="text/css">
   </head>
   <body>
-    <canvas id="canvas" height="600px" width="800px";>
-      
+    <div class="wrapper">
+        <nav>
+          <ul>
+            <li id="trackX"></li>
+            <li id="trackY"></li>
+            <li><button id="btnRect">Rectangle</button></li>
+            <li><button id="btnLine">Line</button></li>
+            <li><button id="btnCircle">Circle</button></li>
+            <li><button id="btnPath">Path</button></li>
+          </ul>
+        </nav>
+        <main></main>
 
-
-    </canvas> 
-    <button id="drawRec">Rect</button>
-    <script>
-
-      var btn = document.getElementById("drawRec");
-       
-      btn.addEventListener('click', function(){
-
-      function randColor(){
-        return '#' + Math.floor(Math.random()*16777215).toString(16);
-      }
-      
-      var rx = Math.random() * 400;
-      var ry = Math.random() * 300;
-
-      var x = Math.random() * (800 - rx);
-      var y = Math.random() * (600 - ry);
-
-      var radius = Math.random() * 300;
-
-      var cx = Math.random() * (800 - radius * 2);
-      var cy = Math.random() * (600 - radius * 2);
-
-
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext('2d');
-      ctx.fillStyle = randColor();
-      ctx.fillRect(x, y, rx, ry);
-
-     ctx.beginPath();
-     ctx.arc(cx, cy, 83, 0, 2 * Math.PI);
-     ctx.stroke();
-
-})
-
-      
-    
-    </script> 
-    <script src="./dist/js/main.js"></script>
+    </div>
+<script src="./dist/js/main.js"></script>
   </body>
 </html>
