@@ -8,6 +8,8 @@ var draw = (function(){
   
     var ctx = canvas.getContext('2d');
 
+    var color =  Math.floor((Math.random() * 400) + 50);
+
     var rect = canvas.getBoundingClientRect();
 
     var x = 0;
@@ -26,8 +28,12 @@ var draw = (function(){
     var shape = '';
     var isDrawing = false;
 
+    var input = '';
+    document.getElementById('input').addEventListener('click', function(){
 
-
+        input = document.getElementById('input').value;
+        console.log(input);
+    })
 
    
 
@@ -95,15 +101,30 @@ var draw = (function(){
                 case 'path':
                 this.drawPath();
                 break;
+                case 'triangle':
+                this.drawTriangle();
+                break;
                 default:
                 
-                break;
+               
             }
             ctx.save();
         },
 
 
 
+
+        drawTriangle: function(){
+            console.log(input);
+           
+            ctx.fillStyle = input;
+            ctx.beginPath();
+            ctx.moveTo(x1,y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x2 + color, y2)
+            ctx.fill();
+            console.log(input);
+        },
 
         drawPath: function(){
            
@@ -142,9 +163,12 @@ var draw = (function(){
         drawRect: function(){
           ctx.fillStyle = this.randColor();
           ctx.fillRect(x1, y1, (x2 - x1), (y2-y1));
-          
+          ctx.strokeStyle = this.randColor();
+
             
         },
+
+
         
 
         getCanvas: function(){
@@ -163,6 +187,12 @@ var draw = (function(){
 
 
 draw.init();
+
+
+document.getElementById('btnTriangle').addEventListener('click', function(){
+  
+    draw.setShape('triangle');
+});
 
 
 document.getElementById('btnPath').addEventListener('click', function(){
@@ -186,6 +216,9 @@ document.getElementById('btnLine').addEventListener('click', function(){
 
     draw.setShape('line');
 });
+
+
+
 
 ~
 draw.getCanvas().addEventListener('mousedown', function(){
